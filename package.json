@@ -2,9 +2,11 @@
   "name": "notesapp",
   "version": "1.0.0",
   "description": "NodeJs Project - a Notes App using Express, MongoDB & Passport",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "author": "",
   "license": "MIT",
@@ -19,5 +21,8 @@
     "mongoose": "^8.0.1",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
