@@ -4,7 +4,10 @@ exports.homepage = async (req, res) => {
         title: "Notes App",
         description: "This is a notes app build using Node.jsm Express.js, MongoDb, Passport!"
     }
-    res.render('index', locals);
+    res.render('index', {
+        locals,
+        layout: '../views/layouts/front-page'
+    });
 }
 
 //Get about
