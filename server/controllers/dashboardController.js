@@ -14,7 +14,7 @@ exports.dashboard = async (req, res) => {
     try {
         const notes = await Note.aggregate([
             {
-                $sort: { createAt: -1 }
+                $sort: { createdAt: -1 }
             },
             {
                 $match: {user: new mongoose.Types.ObjectId(req.user.id)}
@@ -66,13 +66,45 @@ exports.dashboardViewNote = async(req, res) => {
     }
 }
 
-//Update specific note
+//Update current note
 exports.dashboardUpdateNote = async(req, res) => {
     try {
         await Note.findOneAndUpdate(
             { _id: req.params.id },
             { title: req.body.title, body: req.body.body }
         ).where({ user: req.user.id });
+        res.redirect('/dashboard');
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+//Delete current note
+exports.dashboardDeleteNote = async (req, res) => {
+    try {
+        await Note.deleteOne({ _id: req.params.id }).where({ user: req.user.id });
+        res.redirect('/dashboard');
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+//Add new note
+exports.dashboardAddNote = async (req, res) => {
+    try {
+        res.render('dashboard/add', {
+            layout: "../views/layouts/dashboard"
+        });
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+//Add note submit
+exports.dashboardAddNoteSubmit = async (req, res) => {
+    try {
+        req.body.user = req.user.id;
+        await Note.create(req.body);
         res.redirect('/dashboard');
     } catch(err) {
         console.log(err);

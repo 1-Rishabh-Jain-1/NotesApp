@@ -35,7 +35,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">You are about to delete this node!!</h5>
+                <h5 class="modal-title">You are about to delete this note!</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -50,7 +50,9 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Delete</button>
+                <form action="/dashboard/item-delete/<%= noteId %>?_method=DELETE" method="post" class="position-relative">
+                    <button type="submit" class="btn btn-primary">Delete</button>
+                </form>
             </div>
         </div>
     </div>
